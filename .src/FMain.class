@@ -1,0 +1,155 @@
+' Gambas class file
+
+Private total_segundos As Integer
+Private horas As Integer
+Private minutos As Integer
+Private segundos As Integer
+Private sonido_alarma As String
+
+Public Sub Form_Open()
+  
+  Me.Text = "Gambas Timer v." & Application.Version
+  
+  'Seteamos tamaño por defecto
+  Me.Width = 390
+  Me.Height = 455
+  
+  'Cargamos la configuración guardada
+  cargar_configuraciones()
+  
+  'Mostramos etiqueta con volumen seleccionado
+  lvlvolume.Text = "Vol. " & sldVolume.Value
+  
+End
+
+Public Sub btnStart_Click()
+  
+  'Convertimos todo a segundos  
+  horas = value_hours.Value * 3600
+  minutos = value_minutes.Value * 60
+  segundos = value_seconds.Value 
+  total_segundos = horas + minutos + segundos 
+  
+  lcd_label.Text = total_segundos & " seg. restantes"
+  
+  'Hacemos visible y activamos el spinner
+  timer_spinner.Visible = True
+  timer_spinner.Start
+  
+  'Iniciamos el timer
+  main_timer.Start
+  
+End
+
+Public Sub btnStop_Click()
+  
+  timer_spinner.Stop
+  timer_spinner.Visible = False
+  main_timer.Stop
+  Music.Stop
+  
+End
+
+Public Sub Form_KeyRelease()
+  
+  If Key.code = Key.Esc Then 
+    guardar_cambios()
+    Quit  
+  Endif   
+  
+End
+
+Public Sub Form_Close()
+  
+  guardar_cambios()
+  Quit 
+  
+End
+
+Public Sub main_timer_Timer()
+  
+  lcd_label.Text = total_segundos & " seg. restantes"
+  total_segundos = total_segundos - 1
+  
+  If total_segundos = 0 Then 
+    lcd_label.Text = "0 seg. restantes"
+    timer_spinner.Stop
+    timer_spinner.Visible = False
+    main_timer.Stop
+    repr_sound(sonido_alarma)
+    
+  Endif
+  
+End
+
+Public Sub sldVolume_Change()
+  
+  lvlvolume.Text = "Vol. " & sldVolume.Value
+  
+End
+
+Public Sub list_sounds_Select()
+  
+  'Habilitamos los botones de reproducción de la prueba de alarmas
+  btnPlay.Enabled = True
+  btnStopTest.Enabled = True
+  
+End
+
+Public Sub btnPlay_Click()
+  
+  ' Según el ítem seleccionado llamamos a la función para reproducir el sonido pasando como argumento el nombre del sonido 
+  Select list_sounds.Current.Text
+    Case "Alarma"
+      sonido_alarma = "alarm_noise.mp3"
+    Case "Buzzer"
+      sonido_alarma = "buzzer_noise.mp3"
+    Case "Alarma Casio"
+      sonido_alarma = "casio_alarm.mp3"
+    Case "Telefono"
+      sonido_alarma = "phone_ring.mp3"
+    Case "Radio"
+      sonido_alarma = "radio_alarm.mp3"
+  End Select
+  
+  repr_sound(sonido_alarma)
+  
+End
+
+Public Sub repr_sound(nombre_sonido As String)
+  
+  Music.Load("./" & nombre_sonido)
+  Music.Volume = sldVolume.Value
+  Music.Play
+  
+End
+
+Public Sub btnStopTest_Click()
+  
+  Music.Stop
+  
+End
+
+Public Sub guardar_cambios()
+  
+  'Guardamos configuraciones
+  Settings["alarma/seleccion_alarma"] = list_sounds.Index
+  Settings["alarma/sonido_alarma"] = sonido_alarma
+  Settings["temporizador/volumen"] = sldVolume.Value
+  Settings["temporizador/horas"] = value_hours.Value
+  Settings["temporizador/minutos"] = value_minutes.Value
+  Settings["temporizador/segundos"] = value_seconds.Value
+  Settings.Save
+  
+End
+
+Public Sub cargar_configuraciones()
+  
+  sonido_alarma = Settings["alarma/sonido_alarma"]
+  list_sounds.Index = Settings["alarma/seleccion_alarma", list_sounds.Index = 0]
+  sldVolume.Value = Settings["temporizador/volumen", 128]
+  value_hours.Value = Settings["temporizador/horas"]
+  value_minutes.Value = Settings["temporizador/minutos"]
+  value_seconds.Value = Settings["temporizador/segundos"]
+  
+End

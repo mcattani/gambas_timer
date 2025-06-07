@@ -1,0 +1,19 @@
+# Gambas Project File 3.0
+Title=Simple Timer
+Startup=FMain
+Icon=icon.png
+Version=0.0.2
+Component=gb.image
+Component=gb.gui.qt
+Component=gb.form
+Component=gb.dbus
+Component=gb.settings
+Component=gb.gui.trayicon
+Component=gb.sdl2.audio
+Description="Temporizador con alarma."
+Authors="The Nerdy Apprentice\nhttps://thenerdyapprentice.blogspot.com/"
+TabSize=2
+Language=es_AR
+CheckVariablePrefix=1
+Vendor=TNA
+Packager=1

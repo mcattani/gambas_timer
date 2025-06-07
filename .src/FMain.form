@@ -1,0 +1,156 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,66,69)
+  Font = Font["+3"]
+  Icon = Picture["icon.png"]
+  Arrangement = Arrange.Vertical
+  Spacing = True
+  Margin = True
+  { tab_panel TabPanel
+    MoveScaled(3,2,56,35)
+    Arrangement = Arrange.Column
+    AutoResize = True
+    Spacing = True
+    Margin = True
+    Count = 2
+    Index = 0
+    Text = ("Timer")
+    { Panel1 Panel
+      MoveScaled(2,1,29,8)
+      Arrangement = Arrange.Horizontal
+      Margin = True
+      { value_hours ValueBox
+        MoveScaled(1,1,13,6)
+        Alignment = Align.Center
+      }
+      { Spring4 Spring
+        MoveScaled(15,4,3,1)
+        Direction = Direction.LeftToRight
+      }
+      { Label1 Label
+        MoveScaled(19,1,8,5)
+        Text = ("Horas")
+      }
+    }
+    { Panel2 Panel
+      MoveScaled(2,10,30,8)
+      Arrangement = Arrange.Horizontal
+      Margin = True
+      { value_minutes ValueBox
+        MoveScaled(1,1,13,6)
+        Alignment = Align.Center
+      }
+      { Spring5 Spring
+        MoveScaled(15,4,3,1)
+        Direction = Direction.LeftToRight
+      }
+      { Label2 Label
+        MoveScaled(19,1,10,5)
+        Text = ("Minutos")
+      }
+    }
+    { Panel3 Panel
+      MoveScaled(2,19,32,8)
+      Arrangement = Arrange.Horizontal
+      Margin = True
+      { value_seconds ValueBox
+        MoveScaled(1,1,13,6)
+        Alignment = Align.Center
+      }
+      { Spring6 Spring
+        MoveScaled(15,4,3,1)
+        Direction = Direction.LeftToRight
+      }
+      { Label3 Label
+        MoveScaled(19,1,12,5)
+        Text = ("Segundos")
+      }
+    }
+    { timer_spinner Spinner
+      MoveScaled(39,10,11,11)
+      Expand = True
+    }
+    Index = 1
+    Text = ("Configuración")
+    { list_sounds ListBox
+      MoveScaled(3,2,21,25)
+      Expand = True
+      List = [("Alarma"), ("Buzzer"), ("Alarma Casio"), ("Telefono"), ("Radio")]
+    }
+    { Panel4 Panel
+      MoveScaled(28,4,24,19)
+      Expand = True
+      { btnPlay Button
+        MoveScaled(0,0,5,4)
+        Enabled = False
+        Picture = Picture["icon:/medium/play"]
+      }
+      { btnStopTest Button
+        MoveScaled(9,0,5,4)
+        Enabled = False
+        Picture = Picture["icon:/medium/stop"]
+      }
+      { sldVolume Slider
+        MoveScaled(0,6,23,6)
+        Direction = Direction.LeftToRight
+        MaxValue = 128
+        Orientation = ScrollBar.Horizontal
+        Value = 100
+      }
+      { lvlvolume TextLabel
+        MoveScaled(1,12,11,4)
+      }
+    }
+    Index = 0
+  }
+  { Frame2 Frame
+    MoveScaled(3,39,58,9)
+    Arrangement = Arrange.Horizontal
+    Margin = True
+    { Spring7 Spring
+      MoveScaled(3,3,4,3)
+      Direction = Direction.LeftToRight
+    }
+    { lcd_label LCDLabel
+      MoveScaled(10,1,39,7)
+      Text = ("seg")
+    }
+    { Spring9 Spring
+      MoveScaled(52,3,4,3)
+    }
+  }
+  { Frame1 Frame
+    MoveScaled(2,52,58,9)
+    Arrangement = Arrange.Horizontal
+    Margin = True
+    { Spring1 Spring
+      MoveScaled(3,3,4,3)
+      Direction = Direction.LeftToRight
+    }
+    { btnStart Button
+      MoveScaled(9,2,16,5)
+      Text = ("Iniciar")
+      Picture = Picture["icon:/medium/restart"]
+    }
+    { Spring2 Spring
+      MoveScaled(27,3,4,3)
+      Direction = Direction.LeftToRight
+    }
+    { btnStop Button
+      MoveScaled(33,2,17,5)
+      Text = ("Parar")
+      Picture = Picture["icon:/medium/stop"]
+    }
+    { Spring3 Spring
+      MoveScaled(52,3,4,3)
+    }
+  }
+  { tray_icon #TrayIcon
+    #MoveScaled(58,2)
+    Picture = Picture.Load("icon.png")
+  }
+  { main_timer #Timer
+    #MoveScaled(50,2)
+  }
+}
