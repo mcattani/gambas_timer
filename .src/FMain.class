@@ -31,6 +31,7 @@ Public Sub btnStart_Click()
   total_segundos = horas + minutos + segundos 
   
   lcd_label.Text = total_segundos & " seg. restantes"
+  'mostrar_tiempo()
   
   'Hacemos visible y activamos el spinner
   timer_spinner.Visible = True
@@ -69,16 +70,29 @@ End
 Public Sub main_timer_Timer()
   
   lcd_label.Text = total_segundos & " seg. restantes"
+  'mostrar_tiempo()
   total_segundos = total_segundos - 1
+  lcd_label.Text = total_segundos & " seg. restantes"
   
+  Print total_segundos
   If total_segundos = 0 Then 
     lcd_label.Text = "0 seg. restantes"
+    'mostrar_tiempo()
     timer_spinner.Stop
     timer_spinner.Visible = False
     main_timer.Stop
     repr_sound(sonido_alarma)
-    
   Endif
+  
+End
+
+Public Sub mostrar_tiempo()
+  
+  Dim h As Integer = total_segundos / 3600
+  Dim m As Integer = total_segundos / 60
+  
+  lcd_label.Text = Format$(h, "##") & ":" & Format$(m, "##") & ":" & Format$(segundos, "##")
+  Print Format$(h, "##") & ":" & Format$(m, "##") & ":" & Format$(total_segundos, "##")
   
 End
 
