@@ -1,9 +1,6 @@
 ' Gambas class file
 
 Private total_segundos As Integer
-Private horas As Integer
-Private minutos As Integer
-Private segundos As Integer
 Private sonido_alarma As String
 
 Public Sub Form_Open()
@@ -24,14 +21,16 @@ End
 
 Public Sub btnStart_Click()
   
+  Dim horas As Integer, minutos As Integer, segundos As Integer
+  
   'Convertimos todo a segundos  
   horas = value_hours.Value * 3600
   minutos = value_minutes.Value * 60
   segundos = value_seconds.Value 
   total_segundos = horas + minutos + segundos 
   
-  lcd_label.Text = total_segundos & " seg. restantes"
-  'mostrar_tiempo()
+  'lcd_label.Text = total_segundos & " seg. restantes"
+  mostrar_tiempo(total_segundos)
   
   'Hacemos visible y activamos el spinner
   timer_spinner.Visible = True
@@ -51,33 +50,17 @@ Public Sub btnStop_Click()
   
 End
 
-Public Sub Form_KeyRelease()
-  
-  If Key.code = Key.Esc Then 
-    guardar_cambios()
-    Quit  
-  Endif   
-  
-End
-
-Public Sub Form_Close()
-  
-  guardar_cambios()
-  Quit 
-  
-End
-
 Public Sub main_timer_Timer()
   
-  lcd_label.Text = total_segundos & " seg. restantes"
-  'mostrar_tiempo()
+  'lcd_label.Text = total_segundos & " seg. restantes"
+  'mostrar_tiempo(total_segundos)
   total_segundos = total_segundos - 1
-  lcd_label.Text = total_segundos & " seg. restantes"
+  'lcd_label.Text = total_segundos & " seg. restantes"
+  mostrar_tiempo(total_segundos)
   
-  Print total_segundos
   If total_segundos = 0 Then 
-    lcd_label.Text = "0 seg. restantes"
-    'mostrar_tiempo()
+    'lcd_label.Text = "Liftoff"
+    mostrar_tiempo(total_segundos)
     timer_spinner.Stop
     timer_spinner.Visible = False
     main_timer.Stop
@@ -86,13 +69,15 @@ Public Sub main_timer_Timer()
   
 End
 
-Public Sub mostrar_tiempo()
+Public Sub mostrar_tiempo(total_segundos As Integer) 
+  ' Función  que toma como argumeno el total_segundos, calculo las h, m y segundos y los muestra en el lcd_label 
   
   Dim h As Integer = total_segundos / 3600
-  Dim m As Integer = total_segundos / 60
+  Dim m As Integer = (total_segundos Mod 3600) / 60 ' Calculamos los minutos completos restantes luego de sacar las horas
+  Dim s As Integer = total_segundos Mod 60 ' Calculamos los segundos restantes luego de sacar las horas y minuto
   
-  lcd_label.Text = Format$(h, "##") & ":" & Format$(m, "##") & ":" & Format$(segundos, "##")
-  Print Format$(h, "##") & ":" & Format$(m, "##") & ":" & Format$(total_segundos, "##")
+  lcd_label.Text = Format$(h, "00") & ":" & Format$(m, "00") & ":" & Format$(s, "00")
+  Print Format$(h, "##") & ":" & Format$(m, "##") & ":" & Format$(s, "##")
   
 End
 
@@ -165,5 +150,24 @@ Public Sub cargar_configuraciones()
   value_hours.Value = Settings["temporizador/horas"]
   value_minutes.Value = Settings["temporizador/minutos"]
   value_seconds.Value = Settings["temporizador/segundos"]
+  
+End
+
+Public Sub salir()
+  
+  guardar_cambios
+  Quit 
+  
+End
+
+Public Sub Form_KeyRelease()
+  
+  If Key.code = Key.Esc Then salir()
+  
+End
+
+Public Sub Form_Close()
+  
+  salir() 
   
 End

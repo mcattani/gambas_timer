@@ -113,11 +113,12 @@
       Direction = Direction.LeftToRight
     }
     { lcd_label LCDLabel
-      MoveScaled(10,1,39,7)
-      Text = ("seg")
+      MoveScaled(14,1,32,7)
+      Alignment = Align.Center
     }
     { Spring9 Spring
-      MoveScaled(52,3,4,3)
+      MoveScaled(50,3,4,3)
+      Direction = Direction.LeftToRight
     }
   }
   { Frame1 Frame
