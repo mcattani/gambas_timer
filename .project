@@ -2,7 +2,7 @@
 Title=Simple Timer
 Startup=FMain
 Icon=icon.png
-Version=0.0.10
+Version=0.1.0
 Component=gb.image
 Component=gb.gui.qt
 Component=gb.form

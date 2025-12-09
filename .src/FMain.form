@@ -1,12 +1,25 @@
 # Gambas Form File 3.0
 
 { Form Form
-  MoveScaled(0,0,66,69)
+  MoveScaled(0,0,66,68)
   Font = Font["+3"]
   Icon = Picture["icon.png"]
   Arrangement = Arrange.Vertical
   Spacing = True
   Margin = True
+  { mnProg Menu
+    Text = ("Programa")
+    { mnAbout Menu
+      Text = ("Acerca de") & "..."
+      Picture = Picture["icon:/medium/message"]
+    }
+    { mnSep Menu
+    }
+    { mnSalir Menu
+      Text = ("Salir")
+      Picture = Picture["icon:/medium/logout"]
+    }
+  }
   { tab_panel TabPanel
     MoveScaled(3,2,56,35)
     Arrangement = Arrange.Column

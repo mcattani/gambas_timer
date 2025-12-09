@@ -9,7 +9,7 @@ Public Sub Form_Open()
   
   'Seteamos tamaño por defecto
   Me.Width = 390
-  Me.Height = 455
+  Me.Height = 500
   
   'Cargamos la configuración guardada
   cargar_configuraciones()
@@ -173,5 +173,17 @@ End
 Public Sub Form_Close()
   
   salir() 
+  
+End
+
+Public Sub mnSalir_Click()
+  
+  salir()
+  
+End
+
+Public Sub mnAbout_Click()
+  
+  frmAbout.Show
   
 End
