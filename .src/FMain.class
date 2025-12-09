@@ -36,6 +36,9 @@ Public Sub btnStart_Click()
   timer_spinner.Visible = True
   timer_spinner.Start
   
+  ' Activamos el botón Parar
+  btnStop.Enabled = True
+  
   'Iniciamos el timer
   main_timer.Start
   
@@ -47,6 +50,7 @@ Public Sub btnStop_Click()
   timer_spinner.Visible = False
   main_timer.Stop
   Music.Stop
+  btnStop.Enabled = False
   
 End
 
@@ -117,7 +121,7 @@ End
 
 Public Sub repr_sound(nombre_sonido As String)
   
-  Music.Load("./" & nombre_sonido)
+  Music.Load(Application.Path &/ nombre_sonido)
   Music.Volume = sldVolume.Value
   Music.Play
   
