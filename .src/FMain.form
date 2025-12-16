@@ -1,10 +1,12 @@
 # Gambas Form File 3.0
 
 { Form Form
-  MoveScaled(0,0,66,68)
+  MoveScaled(0,0,62,66)
   Font = Font["+3"]
   Icon = Picture["icon.png"]
+  Resizable = False
   Arrangement = Arrange.Vertical
+  AutoResize = True
   Spacing = True
   Margin = True
   { mnProg Menu
@@ -64,7 +66,7 @@
       }
     }
     { Panel3 Panel
-      MoveScaled(2,19,32,8)
+      MoveScaled(2,19,35,8)
       Arrangement = Arrange.Horizontal
       Margin = True
       { value_seconds ValueBox
@@ -76,7 +78,7 @@
         Direction = Direction.LeftToRight
       }
       { Label3 Label
-        MoveScaled(19,1,12,5)
+        MoveScaled(19,1,14,5)
         Text = ("Segundos")
       }
     }
@@ -135,7 +137,7 @@
     }
   }
   { Frame1 Frame
-    MoveScaled(2,52,58,9)
+    MoveScaled(3,50,58,9)
     Arrangement = Arrange.Horizontal
     Margin = True
     { Spring1 Spring
@@ -162,10 +164,10 @@
     }
   }
   { tray_icon #TrayIcon
-    #MoveScaled(58,2)
+    #MoveScaled(52,0)
     Picture = Picture.Load("icon.png")
   }
   { main_timer #Timer
-    #MoveScaled(50,2)
+    #MoveScaled(44,0)
   }
 }
