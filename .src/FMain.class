@@ -5,7 +5,7 @@ Private sonido_alarma As String
 
 Public Sub Form_Open()
   
-  Me.Text = "Gambas Timer v." & Application.Version
+  Me.Text = "Gambas Timer v" & Application.Version
   
   'Seteamos tamaño por defecto
   Me.Width = 390
@@ -17,6 +17,7 @@ Public Sub Form_Open()
   'Mostramos etiqueta con volumen seleccionado
   lvlvolume.Text = "Vol. " & sldVolume.Value
   
+  Print sonido_alarma
 End
 
 Public Sub btnStart_Click()
@@ -148,7 +149,7 @@ End
 
 Public Sub cargar_configuraciones()
   
-  sonido_alarma = Settings["alarma/sonido_alarma"]
+  sonido_alarma = Settings["alarma/sonido_alarma", sonido_alarma]
   list_sounds.Index = Settings["alarma/seleccion_alarma", list_sounds.Index = 0]
   sldVolume.Value = Settings["temporizador/volumen", 128]
   value_hours.Value = Settings["temporizador/horas"]
