@@ -32,58 +32,49 @@
     Index = 0
     Text = ("Timer")
     { Panel1 Panel
-      MoveScaled(2,1,29,8)
+      MoveScaled(2,1,37,8)
       Arrangement = Arrange.Horizontal
       Margin = True
       { value_hours ValueBox
         MoveScaled(1,1,13,6)
         Alignment = Align.Center
       }
-      { Spring4 Spring
-        MoveScaled(15,4,3,1)
-        Direction = Direction.LeftToRight
-      }
       { Label1 Label
-        MoveScaled(19,1,8,5)
+        MoveScaled(18,1,12,6)
+        Padding = 20
         Text = ("Horas")
       }
     }
     { Panel2 Panel
-      MoveScaled(2,10,30,8)
+      MoveScaled(2,10,37,8)
       Arrangement = Arrange.Horizontal
       Margin = True
       { value_minutes ValueBox
         MoveScaled(1,1,13,6)
         Alignment = Align.Center
       }
-      { Spring5 Spring
-        MoveScaled(15,4,3,1)
-        Direction = Direction.LeftToRight
-      }
       { Label2 Label
-        MoveScaled(19,1,10,5)
+        MoveScaled(18,1,16,6)
+        Padding = 20
         Text = ("Minutos")
       }
     }
     { Panel3 Panel
-      MoveScaled(2,19,35,8)
+      MoveScaled(2,19,37,8)
       Arrangement = Arrange.Horizontal
       Margin = True
       { value_seconds ValueBox
         MoveScaled(1,1,13,6)
         Alignment = Align.Center
       }
-      { Spring6 Spring
-        MoveScaled(15,4,3,1)
-        Direction = Direction.LeftToRight
-      }
       { Label3 Label
-        MoveScaled(19,1,14,5)
+        MoveScaled(17,1,16,6)
+        Padding = 20
         Text = ("Segundos")
       }
     }
     { timer_spinner Spinner
-      MoveScaled(39,10,11,11)
+      MoveScaled(41,10,11,11)
       Expand = True
     }
     Index = 1
@@ -119,7 +110,7 @@
     }
     Index = 0
   }
-  { Frame2 Frame
+  { frmLcdLbl Frame
     MoveScaled(3,39,58,9)
     Arrangement = Arrange.Horizontal
     Margin = True
@@ -136,7 +127,7 @@
       Direction = Direction.LeftToRight
     }
   }
-  { Frame1 Frame
+  { frmBtns Frame
     MoveScaled(3,50,58,9)
     Arrangement = Arrange.Horizontal
     Margin = True
