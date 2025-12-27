@@ -2,6 +2,8 @@
 
 Un temporizador simple desarrollado con Gambas3.
 
+![captura 2](https://i.ibb.co/DHKPsB53/captura1.png)
+
 ## Características
 
 *   **Fácil de usar:** Interfaz limpia y minimalista para configurar temporizadores rápidamente.
